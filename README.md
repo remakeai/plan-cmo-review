@@ -112,11 +112,91 @@ For those, use other tools or skills.
 - It doesn't replace founder judgment on positioning or voice
 - Same gameability caveat as any AI evaluator — a founder who iterates with Claude to game the forcing questions can produce a polished plan that masks weak fundamentals. Use the outputs as a draft to react to, not as truth.
 
+## Regression tests
+
+**This skill ships with regression tests.** Unusual for AI skills; necessary because AI evaluators don't crash when they degrade — they confidently produce subtly weaker output. Without fixture-based regressions, model upgrades and prompt edits can silently weaken what the skill catches; nobody notices until the next user gets a bad plan.
+
+Test fixtures live in [`tests/regressions/`](tests/regressions/). Each fixture is:
+
+- **A frozen input scenario** (real or synthetic product description)
+- **An expected-insights rubric** — 7 specific insights the skill SHOULD surface against that input
+- **Pass criteria** — typically ≥5 of 7 insights at acceptable depth
+
+### Current fixtures
+
+| Fixture | Motion class | Why it exists |
+|---|---|---|
+| [`tldrof-expected-insights.md`](tests/regressions/tldrof-expected-insights.md) | Consumer subscription ($9/mo) | Real founder case (tldrof.com). Baseline derived from a parallel `/deep-research` session that produced a meaningfully better plan than the skill's first version. |
+| [`b2b-saas-expected-insights.md`](tests/regressions/b2b-saas-expected-insights.md) | B2B SaaS ($40/seat/mo, mid-market) | Synthetic fixture catches over-application of consumer-product patterns (HN-as-category-error, freebie-disqualifier) to B2B contexts where they don't apply. |
+| [`dev-tool-expected-insights.md`](tests/regressions/dev-tool-expected-insights.md) | OSS + hosted-tier dev tool ($99/mo) | Synthetic fixture catches over-application of consumer OR B2B patterns to dev tools. HN IS right audience for dev tools; docs/SEO compounding matters; OSS-to-paid mechanics are distinct. |
+
+### How to run the regression tests
+
+**Manual run** (recommended for v0.x — fast, low ceremony):
+
+1. Open the fixture file (e.g., `tests/regressions/tldrof-expected-insights.md`) and read the input scenario + expected insights
+2. Run `/plan-cmo-review` in a clean Claude Code session against the input scenario
+   - For the tldrof fixture: check out `tldr-of-tldrs/design_document.md` at the snapshot revision noted in the fixture, then run the skill against it
+   - For synthetic fixtures: paste the "Synthetic input scenario" section as the design-doc context and run the skill
+3. Read the resulting `marketing_plan.md` (and `launch_playbook.md` if produced)
+4. For each of the 7 expected insights, mark **surfaced (deep / moderate / minimum) / not surfaced** per the fixture's "Acceptable variations" guidance
+5. Compute pass/fail per the fixture's pass criteria
+6. Append the result to `tests/regressions/results.jsonl`:
+   ```json
+   {"date": "YYYY-MM-DD", "fixture": "tldrof", "skill_version": "v0.x.x", "model": "claude-X-X-X", "score": "N/7", "verdict": "PASS|WEAK|FAIL|STRONG", "missed": ["insight 3", "insight 6"]}
+   ```
+
+**LLM-judged run** (recommended for v0.5+ — automatable):
+
+1. Run the skill against the fixture's input scenario as in step 2 above
+2. Pass the resulting marketing plan output + the fixture file (rubric) to a Claude subagent with prompt:
+   > You are scoring a marketing plan against a rubric of 7 expected insights. For each insight, the rubric specifies "acceptable variations." Read the plan, then for each insight return `{ "surfaced": bool, "depth": "deep"|"moderate"|"minimum"|"absent", "evidence_excerpt": "the relevant quote from the plan", "notes": "your reasoning" }`. Be strict on rubric matching but allow the variations explicitly listed.
+3. Aggregate the 7 results into a pass/fail per the fixture's pass criteria
+4. Append to `results.jsonl` as above
+
+**CI integration** (for v1.0+): trigger regression run on every `SKILL.md` change; compare against last-known-good baseline; block merge if a fixture drops below previous pass level.
+
+### When to run regressions
+
+- **Every skill version bump** (`SKILL.md` edits)
+- **Every model upgrade in production** (Claude version change in your Claude Code setup)
+- **Every major prompt-template edit**
+- **Quarterly** as a baseline drift check, even without intentional changes
+
+### Adding more fixtures
+
+PRs welcome for fixtures covering motion classes not yet represented:
+
+- Marketplace (two-sided cold-start dynamics)
+- Enterprise SaaS (>1000 seats, RFP-driven, security-questionnaire-heavy)
+- Vertical SaaS (industry-specific channel/community landscape)
+- AI agent product (trust-led, capability-curve-aware)
+- Hardware-adjacent SaaS (long sales cycles, integration partnerships)
+- Pure-OSS dev tool (no paid tier; alternative monetization)
+- Mobile consumer app (App Store dynamics, ASO)
+
+Each motion class has distinct failure modes that a one-fixture-fits-all skill will miss. Each new fixture catches a class of skill regression the existing fixtures don't.
+
+To add a fixture:
+
+1. Copy the structure of an existing fixture (`tldrof-expected-insights.md` is the reference)
+2. Define a frozen input scenario (real OR synthetic — both are valid)
+3. Derive 7 expected insights from EITHER a known-good parallel session OR domain expertise about the motion class
+4. Specify acceptable variations per insight (must be strict enough to catch regressions, lenient enough to allow legitimate variation)
+5. Set pass criteria (default ≥5/7)
+6. Open a PR
+
+### Why this matters beyond plan-cmo-review
+
+If you're building any AI evaluator skill — code reviewer, document grader, plan critic, founder-idea scorer — **ship regression tests with it**. Same principle as code. Skills that confidently produce subtly-degrading output are more dangerous than software that crashes, because users have no clear signal that something has degraded.
+
+This applies to GStack and to most AI planning tools currently in circulation. The convention should be widespread; it isn't yet.
+
 ## Contributing
 
 Issues, PRs, and forks welcome. Marketing skill design has weak feedback loops — honest reports from founders who used it (and especially those who shipped after using it) are the most valuable input.
 
-If you use this skill and find a question that should have been asked but wasn't — open an issue. If you find a category of marketing failure the skill doesn't catch — open an issue or PR.
+If you use this skill and find a question that should have been asked but wasn't — open an issue. If you find a category of marketing failure the skill doesn't catch — open an issue or PR. If you have a frozen input + expected-insights rubric for a motion class not yet covered, contribute a regression fixture.
 
 ## License
 
