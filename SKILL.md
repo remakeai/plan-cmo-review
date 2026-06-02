@@ -33,12 +33,25 @@ This skill exists to catch the marketing gap before founders waste 3-6 months bu
 
 ## Operating principles
 
-1. **Extrospective, not introspective.** Other planning skills focus on the founder's thinking. This skill focuses on the world outside the founder's head — competitors, channels, audiences, real distribution mechanics.
-2. **Run actual web searches.** Real competitor data beats founder vibes. The skill MUST web-search competitors and their distribution patterns, not accept founder claims uncritically.
-3. **Force specificity.** "Indie hackers" is not an audience. "Pieter Levels' Twitter followers + r/SideProject regulars who already pay for $9/mo tools" is an audience. Refuse to accept fuzzy targeting.
-4. **Demand pre-launch audience evidence.** Launch-day audience-building is too late. The skill measures existing audience and surfaces it as a load-bearing constraint.
-5. **Refuse single-channel launches.** "Show HN" as the entire plan is a stop-condition; force at least 3 channels with sequence.
-6. **Push back on "build → ship → market" ordering.** That order doesn't work in 2026. The skill challenges it explicitly.
+1. **Default founder assumption: technically strong, marketing-naive** (unless evidence proves otherwise). The typical user of this skill ships product reliably but has never sold one. Their marketing-related assertions — pricing, ICP, channels, launch platform, dogfood mix, "no anti-features in scope," calendar-driven launch dates — are SUSPECT BY DEFAULT and should be challenged before being optimized within. The only input accepted on faith (and even then with room for tweaks) is the **product description itself** (what the product does, how it works). Everything else gets premise-audited in Step 0.5.
+2. **Extrospective, not introspective.** Other planning skills focus on the founder's thinking. This skill focuses on the world outside the founder's head — competitors, channels, audiences, real distribution mechanics.
+3. **Run actual web searches.** Real competitor data beats founder vibes. The skill MUST web-search competitors and their distribution patterns, not accept founder claims uncritically.
+4. **Force specificity.** "Indie hackers" is not an audience. "Pieter Levels' Twitter followers + r/SideProject regulars who already pay for $9/mo tools" is an audience. Refuse to accept fuzzy targeting.
+5. **Demand pre-launch audience evidence.** Launch-day audience-building is too late. The skill measures existing audience and surfaces it as a load-bearing constraint.
+6. **Refuse single-channel launches.** "Show HN" as the entire plan is a stop-condition; force at least 3 channels with sequence.
+7. **Push back on "build → ship → market" ordering.** That order doesn't work in 2026. The skill challenges it explicitly.
+8. **Premise-challenge before tactic-sharpen.** Tactical questions optimize WITHIN whatever framing the design doc accepted. If the framing is wrong, sharper tactics polish wrongness. Step 0.5 runs FIRST; tactical Step 0A questions inherit Step 0.5's findings.
+
+### Evidence that overrides the default
+
+The "marketing-naive by default" assumption flips ONLY when one or more of these are true:
+
+- Founder has shipped ≥1 prior consumer/B2B product with verifiable paying traction at >$10K MRR
+- Founder has a demonstrated marketing track record: published writing with measurable audience, prior brand-building work, named marketing roles at growth-stage companies
+- Founder's existing audience surface area (per Step 0 audit) is genuinely large AND ICP-aligned (not just count — relevance)
+- Founder has documented prior failed launches WITH retrospective analysis showing they learned the distribution lessons
+
+If NONE of the above apply, default holds. Surface this explicitly in Step 0.5 findings: *"Working under marketing-naive default; premise-challenge is load-bearing."*
 
 ---
 
@@ -83,6 +96,148 @@ If the founder has:
 - Zero prior audience + zero competitors identified → recommend Audience-Build Sprint mode (Mode C, see Step 0B)
 - Some audience but no competitive analysis → recommend Focused Review mode (Mode B), focus on Sections 1, 3, 5
 - Substantial prior audience + competitive analysis exists → recommend Full Review mode (Mode A)
+
+---
+
+## Step 0.5 — Premise audit (5 questions, run BEFORE Step 0A)
+
+**This step is load-bearing under the marketing-naive default.** Step 0A's tactical questions sharpen execution within whatever framing the design doc accepted. If the framing is wrong, Step 0A polishes wrongness. Step 0.5 attacks the framing first.
+
+The design doc's PRODUCT description is accepted on faith (with room for tweaks). Every MARKETING claim in the design doc — pricing, ICP, launch platform, dogfood mix, channels, in-scope features — is treated as suspect input requiring justification, not as locked truth.
+
+### Premise extraction (do this first)
+
+Read the design doc. Extract every marketing-relevant premise it accepts as given. Surface as a table:
+
+| # | Accepted premise | Where in doc | Likely-wrong because (hypothesis) |
+|---|---|---|---|
+
+Typical marketing premises in a technical founder's design doc:
+
+- **Launch platform** (often "Show HN")
+- **Audience class** (often the founder's own peer group)
+- **Pricing point AND pricing band** (often anchored on direct competitor pricing)
+- **Dogfood mix** (often the founder's own subscriptions / use cases)
+- **Launch gate** (often calendar-driven: "ship by day N")
+- **In-scope features** (often includes power-user features that contradict positioning)
+- **Channels** (often a single channel the founder knows: HN, Twitter, etc.)
+
+The "Likely-wrong because" column is a HYPOTHESIS to test in M0a–M0e below, not an answer.
+
+### M0a. Launch-platform audience-class fit
+
+**Question:** Is the planned launch platform the right *audience class* for this product, or just the platform the founder is familiar with?
+
+**Pattern this catches:** "Show HN as the launch" for consumer-habit products whose actual buyers aren't on HN. HN is excellent for some product categories (dev tools, developer-facing infra) and a CATEGORY ERROR for others (consumer subscriptions for non-technical buyers, regulated-industry SaaS). Same applies to Twitter for non-Twitter-native audiences, LinkedIn for consumer products, etc.
+
+**Web-search to support:** look up similar products that did/didn't succeed via the planned platform. Specifically search "Show HN [product category]" results and check which got traction vs which got <5 upvotes (the "Hidden Signal" base rate).
+
+**Refuse to accept:**
+- "It worked for [X product]" without checking if X was the same product category and audience class
+- "It's where founders hang out" — founders aren't always the buyer for the product being built
+- "Other founders launched there" — survivor bias
+
+**Accept:**
+- Specific evidence the platform's audience overlaps with the product's actual ICP
+- Honest acknowledgment that the platform was chosen because it's familiar to the founder, NOT because of audience fit — which then triggers an audience-fit re-analysis
+
+### M0b. Canonical-success comparable
+
+**Question:** Name the most successful product in this category at this motion class (consumer subscription / B2B SaaS / dev tool / marketplace / etc.). What did they do that the current plan does NOT?
+
+**Pattern this catches:** plans that don't anchor against precedent. Most categories have 1-3 standout successes (Superhuman for premium-concierge consumer SaaS, Readwise for niche-indispensable subscription, Linear for design-led B2B, Stripe for developer-first infrastructure). Ignoring them produces from-first-principles plans that miss known playbooks.
+
+**Web-search to support:** mandatory. Search for "[category] biggest success" / "[motion class] case study" / "[product type] won via." Specifically look for products that are KNOWN to have succeeded, NOT just direct competitors. Direct competitors are the alternatives; canonical successes are the precedents.
+
+**Refuse to accept:**
+- "There's no real comparable" — usually false; the founder hasn't searched yet
+- Direct-competitor names only without canonical-success additions
+- "Our motion is novel" — almost always wrong; named the wrong motion class
+
+**Accept:**
+- Named successful product with documented playbook + specific delta between their motion and current plan
+- For each canonical success: pricing, primary acquisition channel, onboarding model, gate metric. Cited.
+
+### M0c. Anti-feature surface
+
+**Question:** Name 2+ features currently in scope that contradict the stated positioning, trust model, or business model.
+
+**Pattern this catches:** Features that "sound good" but undermine the wedge. BYO-API-key for a trust-positioned product. Free tier for a premium-positioned product. Self-serve onboarding for a concierge-positioned product. MCP / programmatic integrations for a product whose paying ICP is non-technical. Power-user customization for a product positioning as zero-effort.
+
+**How to find them:** read the in-scope feature list in the design doc. For each feature, ask: "Who does this serve, and is that person the paying ICP?" If the feature serves a segment that won't pay (technical DIY-by-instinct users for a consumer product, free-tier non-converters for a premium product), flag as anti-feature candidate.
+
+**Refuse to accept:**
+- "None of our features contradict positioning" — push back; look at the feature list line by line
+- "Users want it" without showing that PAYING users want it (different segment)
+- Defenses based on "it's optional" — optional features still split the product story
+
+**Accept:**
+- Named feature + specific contradiction explained
+- Honest "I found N candidates; here's why each contradicts" only after an actual line-by-line check
+- Acknowledgment that "kill, defer to v2, or restrict to enterprise tier" is the decision the founder owes themselves
+
+### M0d. Freebie-disqualifier (acquisition-mechanic selection bias)
+
+**Question:** Does the planned acquisition tactic select for the wrong segment? Specifically: do free trials, cheap try-it offers, no-credit-card signups, or other low-commitment-low-risk acquisition mechanics attract people whose profile is OPPOSITE to the paying ICP?
+
+**Pattern this catches:** Plans where the validation cohort is time-rich/money-poor (people willing to gamble time on uncertain product trials) but the paying ICP is time-poor/money-rich (people who buy on trust and don't trial-shop). Cheap trial mechanics are validation theater for the wrong segment.
+
+**Diagnostic:** map the proposed acquisition tactic to the segment it ACTUALLY attracts:
+- "Free trial, no CC required" → time-rich, low-commitment users
+- "$1 reservation" → engaged but not paying customers
+- "30-day money-back guarantee" → cautious buyers (any segment)
+- "Concierge onboarding waitlist" → committed prospects, willing to wait, signal serious intent
+- "Referral from someone they trust" → trust-led ICP, often time-poor/money-rich
+- "Paid placement in trusted publication" → segment of that publication's audience
+
+Then compare: is the attracted segment the same as the paying ICP? If not, the validation signal is misleading.
+
+**Refuse to accept:**
+- "Everyone tries products before buying" — not true for time-poor segments
+- Defenses of the trial mechanic based on conversion-funnel orthodoxy ("industry standard is 7-day trial") without checking if industry-standard applies to this ICP
+- "Free tier is just for top-of-funnel" — top-of-funnel still shapes brand perception and word-of-mouth pool
+
+**Accept:**
+- Honest assessment of which mechanic produces which selection bias
+- Acknowledgment that high-trust acquisition (referral, comparable-recommendation, concierge) may be the right mechanic for time-poor segments — even if it scales slower
+
+### M0e. Dogfood audience-class match (founder vs paying ICP)
+
+**Question:** Is the audience the product was dogfooded on the same audience that will actually buy it? Or is the product being tuned to a proxy audience whose incentives differ from the paying ICP?
+
+**Pattern this catches:** technical founders dogfood on themselves (technical audience) and tune the product for that audience, then plan to sell to non-technical buyers whose needs/behaviors are different. The product ships calibrated to the wrong audience. Specific failure modes:
+
+- Dogfooded on developer newsletters; planning to sell to general professionals → dedup value is different, content style is different
+- Dogfooded on free OSS users; planning to sell to enterprise → feature priorities are different
+- Dogfooded on founder's own use case; planning to sell to a segment with adjacent-but-not-same needs
+
+**Refuse to accept:**
+- "The product works for anyone" — usually false; tuning has an audience signature
+- "I'll re-tune after launch" — too late; first-cohort users entrench the audience identity
+- "Both audiences need the same thing" — sometimes true, often not; force the comparison
+
+**Accept:**
+- Specific evidence dogfood audience = paying ICP (e.g., paying interviews with the actual ICP saying "this matches my needs exactly")
+- Honest acknowledgment of mismatch + plan to add buyer-aligned dogfood subjects BEFORE launch
+
+### Pricing-band sub-check (rolled into Section 6 if Step 0.5 doesn't already surface it)
+
+Pricing has its own dedicated forcing question in Section 6 (Pricing & packaging). Step 0.5 surfaces pricing-band questions IF the design doc treats the price point as locked without ICP willingness-to-pay evidence. If surfaced here, also revisit in Section 6 with full depth.
+
+### Completion criteria for Step 0.5
+
+For each of M0a–M0e:
+- Premise stated
+- Web search performed (where applicable)
+- Verdict: **premise survives / premise fails / premise inconclusive**
+- If failed: cascading implications for the rest of the marketing plan documented
+
+Document findings. Premises that failed challenge become EXPLICIT context for Step 0A. The tactical forcing questions in Step 0A know about Step 0.5 findings and adjust accordingly:
+- If M0a flagged launch platform as wrong audience class, M2 (discovery path) refuses "Show HN as step 1" even more aggressively
+- If M0d flagged freebie-disqualifier, M5/M6 push toward high-trust acquisition mechanics
+- If M0e flagged dogfood mismatch, M1 (audience reality) requires the corrected ICP, not the dogfood ICP
+
+If ≥2 of M0a–M0e fail, document a **PREMISE-LEVEL FINDINGS BLOCK** at the top of the eventual marketing_plan.md, BEFORE the tactical sections. This is the single highest-value thing the skill produces under the marketing-naive default.
 
 ---
 
@@ -218,9 +373,11 @@ Founder picks. Lock the choice before proceeding.
 
 ### Section 1 — Competitive landscape (real research required)
 
-Build a competitive landscape using the web-search done in Step 0:
+Build a competitive landscape using the web-search done in Step 0. **TWO classes of comparable are required — direct competitors AND canonical-success comparables. Do not skip the second class.**
 
-For each of top 3-5 competitors, produce:
+#### 1a. Direct competitors
+
+For each of top 3-5 direct competitors, produce:
 - Name + URL + founding year
 - Pricing + tier structure
 - Apparent traffic sources (SimilarWeb, content patterns)
@@ -230,7 +387,36 @@ For each of top 3-5 competitors, produce:
 
 Output a comparison table.
 
-**Founder action:** for at least one direct competitor, sign up and use their product. Record specific friction points. These become positioning ammunition.
+#### 1b. Canonical-success comparables (this is the part most plans skip)
+
+For this product's motion class (consumer subscription / B2B SaaS / dev tool / marketplace / etc.), identify 2-4 **canonical successful products** — NOT direct competitors, but products that PROVE the playbook at this motion class. Examples by motion class:
+
+- **Premium-concierge consumer subscription:** Superhuman ($30/mo, $825M acquisition Jul 2025) — manual concierge onboarding (Vohra personally did first 200), invite-only waitlist, two-sided referral
+- **Niche-indispensable consumer subscription:** Readwise (~$10/mo, ~$14M ARR, >90% retention) — bootstrapped, product-led, partnerships, no paid acquisition
+- **Design-led B2B:** Linear — bottom-up adoption, polish-as-marketing, founder presence
+- **Developer-first infrastructure:** Stripe — docs as marketing, developer relations team
+- **Two-sided marketplace:** Airbnb — manual supply-side acquisition before demand
+- **Content-led SaaS:** ConvertKit, Ahrefs — content cadence as the primary channel
+
+For each canonical success, produce:
+- Name + price + founding year + current scale
+- Primary acquisition channel (verified, not vibes)
+- Onboarding model (self-serve / concierge / hybrid)
+- Launch gate they used (PMF signal / calendar / waitlist threshold)
+- Specific delta between their playbook and the current plan — what did they do that this plan does NOT?
+
+Output a separate comparison table.
+
+#### 1c. Pattern surface
+
+After both tables exist, write a 1-paragraph pattern read:
+- What do the canonical successes have in common that the current plan lacks?
+- Where do direct competitors diverge from canonical-success patterns?
+- Which pattern is the current plan implicitly following — and is that the right one?
+
+**Founder action:** for at least one direct competitor AND one canonical-success comparable, study their public material (founder interviews, blog post histories, podcast appearances). Record specific patterns. These become both positioning ammunition AND playbook guidance.
+
+**Refuse to skip 1b.** Most marketing plans fail because they anchor against direct competitors (who may be losing themselves) instead of against canonical successes (which prove what works at the motion class). The direct competitor is the alternative; the canonical success is the precedent.
 
 ### Section 2 — ICP specification
 
@@ -293,7 +479,25 @@ Specific weekly outputs (number of posts, threads, podcast appearances, communit
 
 **Force at least 3 channels. Force a sequence, not simultaneous.**
 
-Default sequence pattern (adjust per founder situation):
+#### 5a. Question the launch gate BEFORE producing the playbook
+
+Most technical-founder design docs commit to a calendar-driven launch gate ("ship on day 18 / launch by end of quarter"). Calendar gates fire whether or not the product is actually indispensable. For retention-driven products (consumer subscription, B2B SaaS with high renewal dependence), the launch gate should be **PMF-signal-driven**, not calendar-driven.
+
+**Required question (do this before writing the sequence below):**
+
+> What is the gate that fires the launch? Calendar (day N), or PMF signal (specific dependence metric)? If the product is retention-driven, why is calendar the right gate?
+
+PMF-signal alternatives to surface:
+- **Vohra "very disappointed" test:** ≥40% of trial users answer "very disappointed" to "how would you feel if you could no longer use this." Used by Superhuman to gate public launch.
+- **Engagement threshold:** N% of dogfood users use the product N times/week for N weeks
+- **Word-of-mouth signal:** unprompted referrals from first cohort
+- **Concierge-onboard signal:** founder personally onboards first N users; widens rollout only after N report dependence
+
+If the product is retention-driven AND the chosen gate is calendar, the skill should propose a **concierge-first cohort** alternative (manual founder onboarding of first 10-20 users before any public launch) and surface the Vohra/Readwise/Superhuman precedent. This pairs with Insight 7-class findings from Step 0.5.
+
+If the founder defends the calendar gate, they must do it explicitly with reasoning that survives the Vohra/Superhuman precedent. Acceptable reasons exist (developer-tool launches benefit from time-bounded marketing moments; some marketplaces need a critical-mass-day) but most retention-driven consumer products should not be calendar-gated.
+
+#### 5b. Default sequence pattern (adjust per founder situation)
 
 | Day | Channel | Specific action |
 |---|---|---|
@@ -318,15 +522,33 @@ Customize per founder. Output: `launch_playbook.md` with explicit hour-by-hour a
 
 ### Section 6 — Pricing & packaging
 
-Cover:
+#### 6a. Question the pricing BAND before the price point
 
-- Anchoring pricing against direct competitors (from Section 1)
+Most technical-founder design docs anchor on competitor pricing: "competitors are $5-15, so we'll pick $9." This is BAND-FROM-COMPETITORS thinking, which is wrong if the competitor band itself is miscalibrated against the actual paying ICP's willingness-to-pay.
+
+**Required question (do this BEFORE optimizing the price point):**
+
+> Did the price band inherit from competitor anchoring, or from ICP willingness-to-pay evidence? If competitor-anchored, what does the ICP actually pay for similar tools in adjacent categories?
+
+Common ICP-WTP evidence to gather:
+- What does the ICP currently pay for similar attention/time/productivity products? (Superhuman $30/mo, Readwise $10/mo, Notion $10-15/seat, ChatGPT Plus $20/mo)
+- What's the documented LTV-by-price-band evidence? (RevenueCat State of Subscription Apps: $5-9 is a documented LTV-penalty band; $10-15+ retains meaningfully better; annual billing dominates retention)
+- For time-poor/money-rich ICPs (typical for premium consumer SaaS), does the chosen price match their adjacent-category spend, or undershoot it?
+
+If the band is wrong, the price point optimization is the wrong work. Surface the band question first; then if the band is confirmed, optimize within it.
+
+**Specific failure mode to flag:** matching the cheapest direct competitor's price (e.g., "Readless is $4.90, so we should be $5-6") is a common technical-founder reflex. It's almost always the wrong move when the paying ICP is time-poor — they DON'T price-shop at the bottom of the band; they trust-shop near the top. Cheapening the price signals "commodity" to exactly the segment that buys on trust.
+
+#### 6b. Standard pricing & packaging coverage
+
+After the band question is answered, cover:
+
 - Tier structure (free / starter / pro / team / enterprise as relevant)
-- Trial mechanics (free trial vs freemium vs paid-only)
-- Annual discount strategy
+- Trial mechanics (free trial vs freemium vs paid-only) — **revisit M0d freebie-disqualifier findings here; if cheap-trial mechanic selects against the paying ICP, propose alternatives**
+- Annual discount strategy (annual billing typically increases retention dramatically — name the evidence)
 - Per-seat vs per-feature vs per-usage pricing models
 
-Force the founder to defend their current pricing with specific reasoning, not "felt right."
+Force the founder to defend their current pricing AND pricing model with specific reasoning, not "felt right" and not "matches competitors."
 
 ### Section 7 — Post-launch growth loops
 
@@ -434,8 +656,16 @@ Throughout the skill, refuse these patterns explicitly. They are the failure mod
 4. **"Marketing is downstream of product quality."** — Partially true, but distribution still requires its own work.
 5. **"My competitors don't really compete with me."** — Almost always wrong; force the competitor analysis honestly.
 6. **"I don't need a marketing plan because the product is so good."** — Survivorship bias; the products that "needed no marketing" had invisible marketing behind them.
+7. **"Match the cheapest competitor's price."** — Common technical-founder reflex; almost always wrong for time-poor/money-rich ICPs who trust-shop near the top of the band, not price-shop at the bottom. Cheapening signals "commodity" to the segment that buys on trust.
+8. **"Calendar-driven launch is fine."** — For retention-driven products, the launch gate should be PMF-signal-driven (Vohra "very disappointed" or equivalent), not calendar-driven. Calendar gates fire whether or not the product is indispensable.
+9. **"Cheap-trial mechanics validate willingness to pay."** — They validate willingness to TRY for free. For time-poor/money-rich ICPs, the validation cohort and the paying cohort are different humans. Cheap-trial validation is theater for the wrong segment.
+10. **"All our in-scope features serve the paying ICP."** — Most plans have at least one anti-feature that contradicts positioning. Look line-by-line at the feature list before accepting this claim.
+11. **"The product works for anyone — the dogfood audience doesn't matter."** — Tuning has an audience signature. Dogfooding on technical users tunes the product for technical users regardless of who you plan to sell to.
+12. **"Direct competitors are the only comparables that matter."** — Direct competitors are alternatives. Canonical-success products at the same motion class are precedents. Both classes are required research.
 
 If the founder leans into any of these patterns, surface it directly, explain why it fails, and require a concrete alternative before proceeding.
+
+**Default refusal posture (under marketing-naive default):** when in doubt between accepting a founder's marketing claim and challenging it, CHALLENGE. The asymmetry is: a wrongly-accepted premise produces a polished plan that ships to silence; a wrongly-challenged premise costs 10 minutes of founder time to re-defend. The cost asymmetry favors challenge.
 
 ---
 
@@ -450,3 +680,8 @@ If you use this skill and find it useful (or broken), share your experience. Mar
 ## Version history
 
 - v0.1.0 (2026-05-23) — initial release. Built to fill the marketing gap in GStack's planning pipeline as identified by founder using GStack to build [tldrof.com](https://github.com/remakeai/tldr-of-tldrs).
+- v0.2.0 (2026-06-01) — Premise audit added (Step 0.5 with M0a-M0e questions) in response to v0.1.0 failing its own regression test against the tldrof fixture (scored 2/7). Three core changes:
+  1. Default founder assumption made explicit: technically strong, marketing-naive. PRODUCT description accepted on faith; all MARKETING premises (pricing, ICP, channels, launch platform, dogfood mix, in-scope features) suspect by default.
+  2. Step 0.5 Premise Audit inserted BEFORE Step 0A tactical questions. Five new premise-challenge questions (launch-platform audience-class fit, canonical-success comparable, anti-feature surface, freebie-disqualifier, dogfood-vs-buyer audience match). Cascading findings flow into Step 0A questions.
+  3. Section 1 now requires CANONICAL-SUCCESS comparables in addition to direct competitors. Section 5 questions launch GATE (calendar vs PMF-signal) before producing the sequence. Section 6 questions pricing BAND before optimizing price point. Anti-patterns list expanded from 6 to 12.
+  Regression baseline: re-run tldrof fixture should target ≥5/7. If still below, the rubric or the skill needs further iteration; document either way.

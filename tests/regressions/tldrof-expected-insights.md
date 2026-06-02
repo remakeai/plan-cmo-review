@@ -1,7 +1,7 @@
 # Regression test fixture — tldrof / plan-cmo-review
 
 **Skill under test:** `plan-cmo-review`
-**Input fixture:** `tldr-of-tldrs/design_document.md` at the revision frozen for this test (see "Input snapshot" below).
+**Input fixture:** `tests/regressions/fixtures/tldrof/design_document.md` (vendored into this repo so the fixture is self-contained; sourced from `tldr-of-tldrs/design_document.md` at the revision frozen for this test — see "Input snapshot" below).
 **Expected output:** marketing plan that surfaces ≥5 of 7 insights documented below.
 **Reference output:** `tldr-of-tldrs/MARKETING.md` produced via a parallel `/deep-research` conversation, which surfaced all 7. This file is the rubric extracted from it.
 
@@ -15,9 +15,9 @@ Without this fixture, model upgrades, prompt edits, or section reorderings can s
 
 ## Input snapshot
 
-- File: `tldr-of-tldrs/design_document.md`
+- File: `tests/regressions/fixtures/tldrof/design_document.md` (vendored copy)
 - Frozen at: state as of 2026-05-23 (after Founder Editorial Pass 5; before any Day 5+ corrective queue items shipped)
-- File: `tldr-of-tldrs/IMPLEMENTATION.md` (companion context)
+- Companion context (not vendored): `tldr-of-tldrs/IMPLEMENTATION.md`
 - Founder profile data: ex-Micron, building tldrof.com, LinkedIn 996 followers, Substack 11 subscribers, dogfood on technical newsletters
 
 If the input snapshot drifts, the expected insights MAY drift too. Re-derive the rubric if the input changes meaningfully.

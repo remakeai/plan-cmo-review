@@ -14,17 +14,33 @@ That was my entire marketing strategy. A single post. To Hacker News. With no pr
 
 GStack is strong on product judgment, architecture, security, design — and silent on distribution. This skill fills that gap.
 
+## Default founder assumption
+
+This skill assumes the typical user is **technically strong but marketing-naive** — they ship product reliably but have never sold one. Under this default:
+
+- The **product description** is accepted on faith (with room for tweaks).
+- Every **marketing premise** — pricing, ICP, channels, launch platform, dogfood mix, in-scope features — is treated as SUSPECT and gets premise-audited before tactical optimization.
+
+The default flips only when the founder provides evidence to the contrary (prior shipped product with paying traction, demonstrated marketing track record, large + ICP-aligned existing audience, documented prior launch retrospectives). Without that evidence, the skill challenges marketing premises by default.
+
 ## What it does
 
-Interactive marketing-and-distribution review modeled on GStack's office-hours pattern:
+Interactive marketing-and-distribution review modeled on GStack's office-hours pattern, **with a premise-audit pass added in v0.2 after v0.1 failed its own regression test**:
 
-- **7 forcing questions** — hard to dodge, refuse evasions. Surface audience reality, channel honesty, first-10-customer specifics.
-- **Real competitive web search** — not vibes; actual research into where competitors get users.
+- **Step 0.5 Premise Audit (5 questions, NEW in v0.2)** — runs BEFORE tactical questions; attacks the marketing premises the design doc accepts as given:
+  - **M0a Launch-platform audience-class fit** — catches "Show HN" for products whose buyers aren't on HN
+  - **M0b Canonical-success comparable** — forces research into the proven playbook at this motion class (Superhuman / Readwise / Linear / Stripe / etc.), not just direct competitors
+  - **M0c Anti-feature surface** — catches features in scope that contradict positioning
+  - **M0d Freebie-disqualifier** — catches acquisition mechanics that select for the WRONG segment (time-rich / money-poor users when the paying ICP is time-poor / money-rich)
+  - **M0e Dogfood vs paying-ICP audience-class match** — catches products tuned on the founder's audience when the buyer is a different audience
+- **7 tactical forcing questions** (Step 0A) — hard to dodge, refuse evasions. Surface audience reality, channel honesty, first-10-customer specifics. Inherit findings from Step 0.5.
+- **Real competitive web search** — not vibes; actual research into where competitors get users PLUS canonical-success comparables at this motion class.
 - **Channel-by-channel evaluation** — refuse "we'll do all of them"; force 2-3 channel prioritization.
 - **Pre-launch audience-build plan** — 30/60/90-day cadence starting now, not at launch.
-- **Multi-channel sequenced launch playbook** — refuses single-channel "Show HN" plans.
+- **Launch playbook with gate-question (NEW in v0.2)** — questions whether the launch gate should be calendar-driven or PMF-signal-driven (Vohra "very disappointed" / Superhuman concierge-first) BEFORE producing the sequence.
+- **Pricing review with band-question (NEW in v0.2)** — questions the pricing BAND before optimizing the price point. Catches the "match cheapest competitor" technical-founder reflex.
 - **Outside-voice critique** — independent cold-read of the marketing plan.
-- **Artifacts:** `marketing_plan.md`, `icp.md`, `launch_playbook.md`, `audience_build_journal.md`.
+- **Artifacts:** `marketing_plan.md`, `icp.md`, `launch_playbook.md`, `audience_build_journal.md` (or `audience_build_sprint.md` in Mode C).
 
 Three modes: Full Review (90-120 min), Focused Review (40-60 min), Audience-Build Sprint (60 min — for founders with zero existing audience).
 
@@ -39,8 +55,15 @@ The failure patterns most marketing plans fall into:
 - "I don't need a marketing plan because the product is so good"
 - "Indie hackers" as a target audience (without specificity)
 - "I'll do all the channels" (without prioritization)
+- **NEW in v0.2:** "Match the cheapest competitor's price" — common technical-founder reflex; almost always wrong for time-poor/money-rich ICPs
+- **NEW in v0.2:** "Calendar-driven launch is fine" — for retention-driven products, the launch gate should be PMF-signal-driven
+- **NEW in v0.2:** "Cheap-trial mechanics validate willingness-to-pay" — they validate willingness to try for free; different segment
+- **NEW in v0.2:** "All our in-scope features serve the paying ICP" — almost always wrong; look line-by-line
+- **NEW in v0.2:** "Direct competitors are the only comparables that matter" — canonical-success comparables (Superhuman, Readwise, etc.) are the precedents; direct competitors are just the alternatives
 
 If you lean into these, the skill surfaces it and requires a concrete alternative before continuing.
+
+**Default refusal posture under marketing-naive default:** when in doubt between accepting and challenging a founder's marketing claim, CHALLENGE. A wrongly-accepted premise produces a polished plan that ships to silence; a wrongly-challenged premise costs 10 minutes to re-defend. Cost asymmetry favors challenge.
 
 ## Installation
 
@@ -200,7 +223,7 @@ If you use this skill and find a question that should have been asked but wasn't
 
 ## License
 
-MIT. Use freely. Attribution appreciated but not required.
+Apache 2.0. Use freely. Attribution appreciated but not required.
 
 ## Acknowledgments
 
@@ -208,4 +231,4 @@ Built to fill the marketing gap I found in [GStack](https://github.com/garrytan/
 
 ## Author
 
-Ilia Ovsiannikov — building [tldrof.com](https://github.com/remakeai/tldr-of-tldrs) in public. Daily journal at [iliaov.substack.com](https://iliaov.substack.com).
+Dr. Ilia Ovsiannikov — find me on [LinkedIn](https://www.linkedin.com/in/iliao/). Subscribe to startup founder notes [iliaov.substack.com](https://iliaov.substack.com).

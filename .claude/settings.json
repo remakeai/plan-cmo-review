@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/ASUS/git/startup_gen/**)",
+      "Read(//c//**)",
+      "Bash(mkdir -p tests/regressions/fixtures/tldrof && cp ../tldr-of-tldrs/design_document.md tests/regressions/fixtures/tldrof/design_document.md && ls -la tests/regressions/fixtures/tldrof/)",
+      "WebSearch",
+      "WebFetch(domain:www.readless.app)",
+      "WebFetch(domain:news.ycombinator.com)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\ASUS\\git\\startup_gen\\tldr-of-tldrs"
+    ]
+  }
+}
