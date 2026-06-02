@@ -60,6 +60,8 @@ The failure patterns most marketing plans fall into:
 - **NEW in v0.2:** "Cheap-trial mechanics validate willingness-to-pay" — they validate willingness to try for free; different segment
 - **NEW in v0.2:** "All our in-scope features serve the paying ICP" — almost always wrong; look line-by-line
 - **NEW in v0.2:** "Direct competitors are the only comparables that matter" — canonical-success comparables (Superhuman, Readwise, etc.) are the precedents; direct competitors are just the alternatives
+- **NEW in v0.3:** "Marketing-speak language in dev-tool launches" — for dev-tool products, superlatives ("revolutionary", "best-in-class", "enterprise-grade") inversely correlate with launch traction. Lead with technical specifics, honest comparisons including where you lose, and code-first links.
+- **NEW in v0.3:** "Defer the paying ICP and keep the dogfood-aligned audience" — when M0e flags a dogfood/buyer mismatch, the wrong fix is to defer the paying ICP "to v1.0.5" while keeping the dogfood-aligned audience. Both pivots are required: target audience AND dogfood subjects.
 
 If you lean into these, the skill surfaces it and requires a concrete alternative before continuing.
 
@@ -178,6 +180,12 @@ Test fixtures live in [`tests/regressions/`](tests/regressions/). Each fixture i
 4. Append to `results.jsonl` as above
 
 **CI integration** (for v1.0+): trigger regression run on every `SKILL.md` change; compare against last-known-good baseline; block merge if a fixture drops below previous pass level.
+
+#### Methodology notes
+
+**Real web search is required, not optional.** The skill's competitive analysis depends on current (post-training-cutoff) data — competitor pricing changes, dead products, new entrants. Runner subagents that simulate web searches from training-data knowledge instead of invoking the WebSearch tool live should be flagged in the `notes` field of the `results.jsonl` entry as a methodology gap. A run that self-reports simulated web search does not count as a clean pass; re-run with mandatory live WebSearch invocation before treating the score as authoritative.
+
+**Reliability requires multiple runs per fixture.** A single passing run doesn't distinguish skill quality from a lucky draw. For meaningful reliability claims (model upgrades, major prompt edits, before-vs-after comparisons), run each fixture ≥3 times with blind runners + independent judges. Look at the variance, not just the headline pass rate — same input + same skill should produce consistent insight coverage, mode selection, and prescription direction across runs. Cross-run variance (different mode selection, directionally inverted prescriptions, consistently shallow depth on the same insights) is a skill gap, not noise.
 
 ### When to run regressions
 

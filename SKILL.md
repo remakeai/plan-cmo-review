@@ -92,10 +92,13 @@ Report this back in numeric form. **The current audience size is a load-bearing 
 
 ### Activation rules
 
-If the founder has:
-- Zero prior audience + zero competitors identified → recommend Audience-Build Sprint mode (Mode C, see Step 0B)
-- Some audience but no competitive analysis → recommend Focused Review mode (Mode B), focus on Sections 1, 3, 5
-- Substantial prior audience + competitive analysis exists → recommend Full Review mode (Mode A)
+Audience SIZE is the primary mode-selection axis, but **ICP-ALIGNMENT modifies it**. Audience-count alone is not enough — a 10K-follower audience in the wrong category counts as zero for this product.
+
+- **Mode C (Audience-Build Sprint)** — fires when the founder has effectively zero ICP-aligned audience for THIS product. Triggers: <500 followers in the relevant category, OR an existing audience in a different category from the product's ICP (e.g., 996 LinkedIn followers in semiconductors for a consumer newsletter product = Mode C), OR no content history demonstrating attention from the right audience.
+- **Mode B (Focused Review)** — fires when the founder has SOME ICP-aligned audience AND time pressure or scope constraints make a full plan premature. Default to Mode A when in doubt; Mode B is a deliberate downgrade for compressed timelines, not the default for "some audience."
+- **Mode A (Full Marketing Review)** — fires when (a) founder has ≥1K ICP-aligned attention surface AND competitive context exists, OR (b) the product is mid-build with a hard launch date and needs both audience-build AND a sequenced launch plan in one pass.
+
+**Mode A vs C tie-breaker (load-bearing — this is the case the v0.2 b2b-saas runs disagreed on):** if the founder is mid-build with a hard launch date AND has either a small (<500) OR ICP-misaligned audience, prefer **Mode A with Section 4 elevated** (full plan PLUS embedded audience-build sprint) over Mode C alone. Reason: Mode C alone skips the launch playbook the founder still needs to ship; Mode A with elevated Section 4 produces both. Choose Mode C only when no launch is contemplated within the next 90 days.
 
 ---
 
@@ -215,10 +218,11 @@ Then compare: is the attracted segment the same as the paying ICP? If not, the v
 - "The product works for anyone" — usually false; tuning has an audience signature
 - "I'll re-tune after launch" — too late; first-cohort users entrench the audience identity
 - "Both audiences need the same thing" — sometimes true, often not; force the comparison
+- **"I'll defer the paying ICP and target the dogfood-aligned audience first"** — this is the most common wrong fix. The plan correctly identifies the mismatch, then PRESERVES the mismatch by deferring the right audience and keeping the wrong one. The correct fix is to PIVOT the target audience toward the paying ICP AND expand dogfood subjects to match. Both pivots are required. Doing only one (or worse, deferring the paying ICP entirely) keeps the mismatch and ships the product calibrated to the wrong audience.
 
 **Accept:**
 - Specific evidence dogfood audience = paying ICP (e.g., paying interviews with the actual ICP saying "this matches my needs exactly")
-- Honest acknowledgment of mismatch + plan to add buyer-aligned dogfood subjects BEFORE launch
+- Honest acknowledgment of mismatch + concrete plan with BOTH pivots: (a) pivot the TARGET audience in marketing materials, ICP doc, and launch sequencing to the paying ICP (not the dogfood-aligned proxy), AND (b) expand dogfood subjects to include paying-ICP-representative inputs BEFORE launch (1-2 weeks of buyer-aligned dogfood minimum). The fix is "pivot both," not "defer the paying ICP."
 
 ### Pricing-band sub-check (rolled into Section 6 if Step 0.5 doesn't already surface it)
 
@@ -461,6 +465,35 @@ For each channel, output 1-paragraph realistic assessment for THIS founder's sit
 
 **Refuse to accept:** "we'll do all of them." Solo founders ship maybe 2-3 channels well. Force prioritization.
 
+#### Motion-class-specific channel and tonal rules
+
+The generic channel table above is necessary but not sufficient. Specific motion classes have rules that override generic scoring:
+
+**Consumer subscription:** see Step 0.5 M0a — many channels (especially HN) are wrong audience class for non-technical buyers. A high reach score in the table for HN does NOT translate to actual reach of the paying ICP when the ICP is non-technical.
+
+**B2B SaaS (mid-market):** generic social channels are weak; specific vertical publications carry far higher conversion. For engineering-team products, name: Pragmatic Engineer, Lenny's Newsletter, LeadDev, Rands Leadership Slack, podcasts (Software Engineering Daily, Engineering Enablement). For other verticals (legal, finance, healthcare), name the equivalent vertical publications by sector. Add these to the channel table by name, not as a generic "B2B newsletters" entry.
+
+**Dev tool / OSS + paid:** HN IS the right audience class — do NOT apply consumer-product HN skepticism. Three dev-tool surfaces are PRIMARY (not auxiliary):
+
+1. **Docs / SEO compounding** — integration tutorials per framework rank for long-tail queries ("Next.js auth with X", "auth in [framework]"). Treat docs as marketing, not as separate documentation. Stripe is the canonical playbook.
+2. **GitHub as marketing surface** — repo health (stars, watchers, contributors, issues hygiene, recognizable adopters in dependency graphs) is real social proof. Stars >5K materially affects evaluator conversion. Ecosystem-of-integrations (first-party SDK adapters, HashiCorp HUG-style contributor recognition, named visible adopters) is its own marketing motion. Score GitHub as a PRIMARY channel for dev tools, not a code host with side benefits.
+3. **Founder's existing dev-audience surfaces** — technical blog, dev-Twitter, dev-podcast guesting, prior OSS reputation. Trust transfers within the developer community in ways it doesn't in consumer or B2B-non-dev. If the founder has any of these, rank them above generic launch channels.
+
+**Dev-tool tonal rule (LOAD-BEARING for the launch playbook in Section 5):** on Show HN, r/programming, lobste.rs, and dev-Twitter, marketing-speak tone is INVERSELY correlated with traction. Specifically REFUSE to recommend in launch copy:
+
+- Superlatives: "revolutionary", "best-in-class", "enterprise-grade", "world-class", "game-changing", "seamless", "robust"
+- Benefit-led hero copy without technical specifics
+- Marketer-vocabulary phrasing in launch posts
+
+Specifically RECOMMEND:
+
+- Lead with technical specifics (architecture decisions, named trade-offs)
+- Honest comparisons that explicitly include "this is worse at X" — saying where you lose is what makes the wins credible to the developer audience
+- Code-first framing: link to the GitHub repo BEFORE the landing page on HN / Reddit
+- "Engineer wrote this for engineers" tonal register; cut anything that reads as "marketer wrote this for engineers"
+
+This is the documented anti-pattern that has killed dev-tool launches. The founder's instinct is to write copy that "sells"; the dev audience reads selling as adversarial.
+
 ### Section 4 — Pre-launch audience-building plan
 
 If existing audience is weak (per M3), this is the load-bearing work item. Output a 30/60/90-day audience-build plan:
@@ -662,6 +695,8 @@ Throughout the skill, refuse these patterns explicitly. They are the failure mod
 10. **"All our in-scope features serve the paying ICP."** — Most plans have at least one anti-feature that contradicts positioning. Look line-by-line at the feature list before accepting this claim.
 11. **"The product works for anyone — the dogfood audience doesn't matter."** — Tuning has an audience signature. Dogfooding on technical users tunes the product for technical users regardless of who you plan to sell to.
 12. **"Direct competitors are the only comparables that matter."** — Direct competitors are alternatives. Canonical-success products at the same motion class are precedents. Both classes are required research.
+13. **"Marketing-speak language in dev-tool launches."** — For dev-tool products specifically, superlatives ("revolutionary", "best-in-class", "enterprise-grade", "game-changing", "seamless", "robust") signal "marketer wrote this" to a developer audience and inversely correlate with launch traction. Lead with technical specifics, honest comparisons (including where you lose), and code-first links. See Section 3 motion-class-specific rules for the full dev-tool tonal pattern.
+14. **"Pivot the dogfood to match the paying ICP" without also pivoting the target audience.** — When Step 0.5 M0e flags a dogfood/buyer mismatch, the correct fix is BOTH pivots: change the target audience in marketing materials AND expand dogfood subjects to match. Deferring the paying ICP "to v1.0.5" while keeping the dogfood-aligned audience preserves the mismatch — the product still ships calibrated to the wrong audience. See M0e for full prescription.
 
 If the founder leans into any of these patterns, surface it directly, explain why it fails, and require a concrete alternative before proceeding.
 
@@ -684,4 +719,9 @@ If you use this skill and find it useful (or broken), share your experience. Mar
   1. Default founder assumption made explicit: technically strong, marketing-naive. PRODUCT description accepted on faith; all MARKETING premises (pricing, ICP, channels, launch platform, dogfood mix, in-scope features) suspect by default.
   2. Step 0.5 Premise Audit inserted BEFORE Step 0A tactical questions. Five new premise-challenge questions (launch-platform audience-class fit, canonical-success comparable, anti-feature surface, freebie-disqualifier, dogfood-vs-buyer audience match). Cascading findings flow into Step 0A questions.
   3. Section 1 now requires CANONICAL-SUCCESS comparables in addition to direct competitors. Section 5 questions launch GATE (calendar vs PMF-signal) before producing the sequence. Section 6 questions pricing BAND before optimizing price point. Anti-patterns list expanded from 6 to 12.
-  Regression baseline: re-run tldrof fixture should target ≥5/7. If still below, the rubric or the skill needs further iteration; document either way.
+  Regression baseline: v0.2 scored 7/7 on tldrof, b2b-saas, dev-tool fixtures (3 fixtures × 1 run each = 3/3 STRONG PASS).
+- v0.3.0 (2026-06-01) — Reliability-sweep findings (3 fixtures × 3 runs = 9 total runs) revealed three failure patterns that headline pass rates hid. All three fixed:
+  1. **M0e dogfood-mismatch prescription strengthened.** v0.2 correctly identified dogfood/buyer mismatches but in one tldrof run prescribed the wrong fix (defer the paying ICP, keep the dogfood-aligned audience). M0e "Refuse to accept" now explicitly catches the deferral pattern; "Accept" requires BOTH pivots (target audience + dogfood subjects). Also added as anti-pattern #14.
+  2. **Mode A vs Mode C activation criteria tightened.** v0.2's "some audience" was ambiguous — same b2b-saas input got Mode A in two runs and Mode C in one. Activation rules now disambiguate by ICP-alignment (not just count) and add a load-bearing tie-breaker: mid-build with hard launch date prefers Mode A with elevated Section 4 over Mode C alone, because Mode C alone skips the launch playbook the founder still needs.
+  3. **Dev-tool motion-class rules added.** v0.2 trended consistently shallow on dev-tool insights 5 (GitHub ecosystem) and 6 (anti-marketing tonal register) across all 3 runs — a skill gap, not noise. Section 3 now has explicit motion-class-specific rules for consumer / B2B / dev-tool, with the dev-tool block elevating docs/SEO + GitHub-as-marketing-surface + founder-existing-dev-audience to PRIMARY channel status and adding a load-bearing tonal rule against marketing-speak in dev-tool launch copy. Also added as anti-pattern #13.
+  Regression target for v0.3: 7/7 on all 3 fixtures, with insight 5 and 6 depth on dev-tool fixture improving to ≥1 deep (not consistently moderate as in v0.2). If a smoke-test run shows degradation on previously-passing insights, revert and re-design.
